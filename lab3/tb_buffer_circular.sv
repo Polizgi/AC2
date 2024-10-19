@@ -12,7 +12,7 @@ module tb_buffer_circular;
     wire [WIDTH-1:0] 	dato_o; 		// Dato leido
     wire 				vacia; 		// Senyal de cola vacıa
     wire 				llena; 		// Senyal de cola llena
-    integer i;
+    integer i, pos;
 
     initial begin
         
@@ -30,6 +30,16 @@ module tb_buffer_circular;
       .llena_o(llena)
     );
 
+    task insert_data(input [WIDTH-1:0] data_in);
+      insercion = 1;
+      $display("Data Escrita cb[%d], %d",cola_q,data_in);
+      dato_i = data_in;
+    endtask
+
+    task delete_data();
+      delecion = 1;
+    endtask
+
     // Basic test for all the input combinations
     task basic_functional_testing();
         $display(" ------------------------------------------------");
@@ -41,10 +51,14 @@ module tb_buffer_circular;
         #500;
         for (i=1; i<=8; i++) begin
              clk = 1;
-             insercion = 1;
-             dato_i = i[WIDTH-1:0];
+             if (i <= 4)
+              insert_data(i);
+             else
+              delete_data();
+            
              #500 clk = 0;
              insercion = 0;
+             delecion = 0;
              #500; 
         end
     endtask
