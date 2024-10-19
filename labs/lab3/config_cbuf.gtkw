@@ -1,0 +1,50 @@
+[*]
+[*] GTKWave Analyzer v3.3.116 (w)1999-2023 BSI
+[*] Thu Oct 17 11:42:51 2024
+[*]
+[dumpfile] "/home/ubuntu/labs/lab3/waveform.vcd"
+[dumpfile_mtime] "Thu Oct 17 11:34:56 2024"
+[dumpfile_size] 3119
+[savefile] "/home/ubuntu/labs/lab3/config_cbuf.gtkw"
+[timestart] 0
+[size] 1850 1006
+[pos] -51 -51
+*-11.000000 3070 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] TOP.
+[treeopen] TOP.tb_buffer_circular.
+[sst_width] 297
+[signals_width] 213
+[sst_expanded] 1
+[sst_vpaned_height] 298
+@200
+-Input
+@22
+TOP.tb_buffer_circular.dato_i[31:0]
+@200
+-Output
+@22
+TOP.tb_buffer_circular.dato_o[31:0]
+@200
+-Permisos
+@28
+TOP.tb_buffer_circular.CD.permiso_insercion
+TOP.tb_buffer_circular.CD.permiso_delecion
+@200
+-Estados Cola
+@29
+TOP.tb_buffer_circular.CD.llena_o
+@28
+TOP.tb_buffer_circular.CD.vacia_o
+@200
+-Registros
+@22
+TOP.tb_buffer_circular.CD.registers_q[0][31:0]
+TOP.tb_buffer_circular.CD.registers_q[1][31:0]
+TOP.tb_buffer_circular.CD.registers_q[2][31:0]
+TOP.tb_buffer_circular.CD.registers_q[3][31:0]
+TOP.tb_buffer_circular.CD.registers_q[4][31:0]
+TOP.tb_buffer_circular.CD.registers_q[5][31:0]
+TOP.tb_buffer_circular.CD.registers_q[6][31:0]
+TOP.tb_buffer_circular.CD.registers_q[7][31:0]
+[pattern_trace] 1
+[pattern_trace] 0
