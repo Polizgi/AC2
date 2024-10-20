@@ -1,76 +1,56 @@
 module tb_buffer_circular;
 
-    parameter WIDTH = 32;
+    parameter WIDTH = 64;
     parameter NUM = 8;
     parameter INDEX_SIZE = $clog2(NUM);
-    // Signal declaration
-    reg				  clk; 			// Senyal de reloj
-    reg 				rstn; 		// Senyal negada de reset
-    reg 				insercion; 	// Senyal de insercion
-    reg [WIDTH-1:0] 	dato_i; 		// Dato a insertar
-    reg 				delecion; 	// Senyal de delecion
-    wire [WIDTH-1:0] 	dato_o; 		// Dato leido
-    wire 				vacia; 		// Senyal de cola vacıa
-    wire 				llena; 		// Senyal de cola llena
-    integer i, pos;
+    
 
+    reg clk, rstn;
+    logic insercion;
+    logic [WIDTH-1:0] dato;
+    logic delecion;
+    logic [WIDTH-1:0] dato_output;
+    logic vacia;
+    logic llena;
+    logic [WIDTH-1:0] i;
+    logic [WIDTH-1:0] tmp;
+    
     initial begin
         
     end
 
     // Instance of the full_adder under test
-    BufferCircular #( .WIDTH(WIDTH), .NUM(NUM)) CD (
-      .clk_i(clk), 			   // Senyal de reloj
+    BufferCircular #( .WIDTH(WIDTH), .NUM(NUM)) hola (
+	        .clk_i(clk), 			   // Senyal de reloj
   		.rstn_i(rstn), 		       // Senyal negada de reset
-      .insercion_i(insercion),
-      .dato_i(dato_i),
-      .delecion_i(delecion),
-      .dato_o(dato_o),
-      .vacia_o(vacia),
-      .llena_o(llena)
+  		.insercion_i(insercion),
+  		.dato_i(dato),
+		.delecion_i(delecion),
+  		.dato_o(dato_output),
+  		.vacia_o(vacia),
+		.llena_o(llena)
     );
-
-    task insert_data(input [WIDTH-1:0] data_in);
-      insercion = 1;
-      $display("Data Escrita cb[%d], %d",cola_q,data_in);
-      dato_i = data_in;
-    endtask
-
-    task delete_data();
-      delecion = 1;
-    endtask
 
     // Basic test for all the input combinations
     task basic_functional_testing();
         $display(" ------------------------------------------------");
         $display(" Basic test ");
         $display(" ------------------------------------------------");
-
+// LLENAR BUFFER
         clk = 1; rstn = 0;
-        #500 clk = 0; rstn = 1;
-        #500;
-        for (i=1; i<=8; i++) begin
-             clk = 1;
-             if (i <= 4)
-              insert_data(i);
-             else
-              delete_data();
-            
-             #500 clk = 0;
-             insercion = 0;
-             delecion = 0;
-             #500; 
+        #500 clk = 0; rstn = 1; insercion = 0; delecion = 0; dato = 1; tmp = 0;
+        #500 assert (vacia)
+             $display("(%0d) insercion=%d dato=%d delecion=%d dato_output=%d vacia=%d llena=%d\n",$time,insercion,dato,delecion, dato_output, vacia, llena);
+             else $error("ERROR! (%0d) insercion=%d dato=%d delecion=%d dato_output=%d vacia=%d llena=%d\n",$time,insercion,dato,delecion, dato_output, vacia, llena);
+        for (i=0; i<8; i++) begin
+             clk = 1; tmp = i+1;
+             #500 clk = 0; rstn = 1; insercion = 1; delecion = 0; dato = tmp;
+             #500 assert (!llena)
+		  $display("(%0d) insercion=%d dato=%d delecion=%d dato_output=%d vacia=%d llena=%d\n",$time,insercion,dato,delecion, dato_output, vacia, llena);
+		  else $error("ERROR! (%0d) insercion=%d dato=%d delecion=%d dato_output=%d vacia=%d llena=%d\n",$time,insercion,dato,delecion, dato_output, vacia, llena);
         end
+// VACIAR BUFFER
     endtask
-
-    /*
-    * TESTS A HACER
-    *
-      * Que vaya escribiendo y leyendo
-      * Que pasa si llega al final y lee / escribe?
-      * */
-
-
 
     // Main execution flow of the testbench
     initial begin 
