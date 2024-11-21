@@ -26,7 +26,7 @@ sumador #(.WIDTH(WIDTH)) sumr (                                                 
         .s_o(sum_write)
 );
 
-controlador #(.WIDTH(WIDTH), .NUMREG(NUMREG), .NUMSUMA(12)) ctrl (                             // Controlador
+controlador #(.WIDTH(WIDTH), .NUMREG(NUMREG), .NUMSUMA(6)) ctrl (                             // Controlador
         .clk_i(clk_i),
         .rstn_i(rstn_i),
         .inicio_i(inicio_i),

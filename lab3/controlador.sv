@@ -50,6 +50,10 @@ logic [INDEX_SIZE-1:0] id_q, proximo_id_d; // contador de id escritura
 
 // Logica de proximo estado para los contadores
 always_comb begin
+  proximo_cnt_d = cnt_q;
+  proximo_idA_d = idA_q;
+  proximo_idB_d = idB_q;
+  proximo_id_d  = id_q;
   if (!rstn_i) begin
     proximo_cnt_d = 'b0;
     proximo_idA_d = 'b0;
@@ -57,13 +61,10 @@ always_comb begin
     proximo_id_d = 'b0;
   end else if (estado_q == 1'b1) begin
     if (cnt_q < NUMSUMA) begin
-      proximo_cnt_d = cnt_q + 'h1;
-      proximo_idA_d = cnt_q + 'h1;
+      proximo_cnt_d = cnt_q + 1;
+      proximo_idA_d = cnt_q + 1;
       proximo_idB_d = 0;
       proximo_id_d = 0;
-    end else begin
-      proximo_cnt_d = 'h0;
-      next_fin = 1'b1;
     end
   end
 end
