@@ -49,26 +49,21 @@ logic [INDEX_SIZE-1:0] idB_q, proximo_idB_d; // contador de id B
 logic [INDEX_SIZE-1:0] id_q, proximo_id_d; // contador de id escritura
 
 // Logica de proximo estado para los contadores
-always_comb begin // ESTO ES LO QUE SE HA MODIFICADO
-  if (!rstn_i) begin // Reset
+always_comb begin
+  if (!rstn_i) begin
     proximo_cnt_d = 'b0;
-    proximo_idA_d = 4'h1;
+    proximo_idA_d = 'b0;
     proximo_idB_d = 'b0;
     proximo_id_d = 'b0;
-  end else if (cnt_q == 2*NUMSUMA) begin // Fin del proceso
-    proximo_cnt_d = 'b0;
-    proximo_idA_d = 4'h1;
-    proximo_idB_d = 'b0;
-    proximo_id_d = 'b0;
-  end else begin // Operaciones normales
-    proximo_cnt_d = cnt_q + 4'h1;
-    proximo_id_d = 'b0;
-    if (!proximo_estado_d) begin 
-      proximo_idA_d = idA_q + 4'h1;
-      proximo_idB_d = 'b0;
+  end else if (estado_q == 1'b1) begin
+    if (cnt_q < NUMSUMA) begin
+      proximo_cnt_d = cnt_q + 'h1;
+      proximo_idA_d = cnt_q + 'h1;
+      proximo_idB_d = 0;
+      proximo_id_d = 0;
     end else begin
-      proximo_idA_d = idA_q;
-      proximo_idB_d = 'b0;
+      proximo_cnt_d = 'h0;
+      next_fin = 1'b1;
     end
   end
 end
@@ -96,7 +91,7 @@ always_comb begin
     next_fin = 1'b0;
   end else if (estado_q == 1'b0) begin // Valor en el estado 0
     next_fin = 1'b0;
-  end else if ((estado_q == 1'b1) & (cnt_q == 'h0)) begin // Condicion de finalizacion
+  end else if ((estado_q == 1'b1) & (cnt_q == NUMSUMA)) begin // Condicion de finalizacion
     next_fin = 1'b1;
   end // Cualquier otra combinacion
 end
