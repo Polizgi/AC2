@@ -50,10 +50,12 @@ bancoRegistros #(.WIDTH(WIDTH), .NUM(NUMREG)) br (                              
 );
 
 always_comb begin
-	if (!fin_o) begin
+	data_o = 0;
+  regId_o = 0;
+  if (!rstn_i) begin
 		data_o = 0;
 		regId_o = 0;
-	end else begin
+	end else if (!fin_o | write_enable) begin
 		data_o = sum_write;
 		regId_o = id_write;
 	end

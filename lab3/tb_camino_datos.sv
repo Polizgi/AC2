@@ -34,16 +34,16 @@ module tb_camino_datos;
 
         clk = 1; rstn = 0; tmp = 'h0;
         #500 clk = 0; rstn = 1; inicio = 1;
-        #500 assert ((fin == 1'b0) && (regid == 4'h0) && (data_output == 32'h0))
-             $display("(%0d) fin=%b regid=%d data_o=%d\n",$time,fin,regid,data_output);
-             else $error("ERROR! (%0d) fin=%b regid=%d data_o=%d\n",$time,fin,regid,data_output);
+        #500 assert ((fin == 1'b0) && (regid == 4'h0) && (data_output == 32'h0)) 
+             $display("1-(%0d) fin=%b regid=%d data_o=%d\n",$time,fin,regid,data_output);
+             else $error("2-ERROR! (%0d) fin=%b regid=%d data_o=%d\n",$time,fin,regid,data_output);
         for (i=0; i<6; i++) begin
              clk = 1;
              tmp = tmp + i[WIDTH-1:0] + 1;
              #500 clk = 0; inicio = 0;
              #500 assert (fin == (i == 32'h5) && (regid == 4'h0) && (data_output == tmp))
-                  $display("(%0d) fin=%b regid=%d data_o=%d\n",$time,fin,regid,data_output);
-                  else $error("ERROR! (%0d) fin=%b regid=%d data_o=%d\n",$time,fin,regid,data_output);
+                  $display("3-(%0d) fin=%b regid=%d data_o=%d\n",$time,fin,regid,data_output);
+                  else $error("4-ERROR! (%0d) fin=%b regid=%d data_o=%d\n",$time,fin,regid,data_output);
         end
     endtask
 

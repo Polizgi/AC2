@@ -1,0 +1,68 @@
+[*]
+[*] GTKWave Analyzer v3.3.116 (w)1999-2023 BSI
+[*] Thu Nov 21 21:02:49 2024
+[*]
+[dumpfile] "/home/ubuntu/AC2/lab3/waveform.vcd"
+[dumpfile_mtime] "Thu Nov 21 20:57:13 2024"
+[dumpfile_size] 6351
+[savefile] "/home/ubuntu/AC2/lab3/config_camino.gtkw"
+[timestart] 0
+[size] 1850 1006
+[pos] -1 -1
+*-11.000000 6020 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] TOP.
+[treeopen] TOP.tb_camino_datos.
+[treeopen] TOP.tb_camino_datos.CD.
+[sst_width] 297
+[signals_width] 261
+[sst_expanded] 1
+[sst_vpaned_height] 272
+@200
+-Clock
+@28
+TOP.tb_camino_datos.CD.ctrl.clk_i
+TOP.tb_camino_datos.CD.ctrl.rstn_i
+@200
+-Estados
+@29
+TOP.tb_camino_datos.CD.ctrl.estado_q
+@28
+TOP.tb_camino_datos.CD.ctrl.proximo_estado_d
+TOP.tb_camino_datos.CD.ctrl.inicio_i
+TOP.tb_camino_datos.CD.ctrl.next_fin
+TOP.tb_camino_datos.CD.ctrl.fin_o
+@200
+-Contadores Actuales
+@22
+TOP.tb_camino_datos.CD.ctrl.cnt_q[3:0]
+TOP.tb_camino_datos.CD.ctrl.idA_q[3:0]
+TOP.tb_camino_datos.CD.ctrl.idB_q[3:0]
+TOP.tb_camino_datos.CD.ctrl.id_q[3:0]
+@200
+-Contadores Futuros
+@22
+TOP.tb_camino_datos.CD.ctrl.proximo_idA_d[3:0]
+TOP.tb_camino_datos.CD.ctrl.proximo_idB_d[3:0]
+TOP.tb_camino_datos.CD.ctrl.proximo_cnt_d[3:0]
+TOP.tb_camino_datos.CD.ctrl.proximo_id_d[3:0]
+@200
+-Registros
+@22
+TOP.tb_camino_datos.CD.ctrl.A_o[3:0]
+TOP.tb_camino_datos.CD.ctrl.B_o[3:0]
+TOP.tb_camino_datos.CD.ctrl.id_o[3:0]
+@28
+TOP.tb_camino_datos.CD.ctrl.we_o
+@200
+-Otros datos
+@22
+TOP.tb_camino_datos.CD.ctrl.INDEX_SIZE[31:0]
+TOP.tb_camino_datos.CD.ctrl.NUMREG[31:0]
+TOP.tb_camino_datos.CD.ctrl.NUMSUMA[31:0]
+TOP.tb_camino_datos.CD.ctrl.WIDTH[31:0]
+TOP.tb_camino_datos.CD.sumr.x_i[31:0]
+TOP.tb_camino_datos.CD.sumr.y_i[31:0]
+TOP.tb_camino_datos.CD.sumr.s_o[31:0]
+TOP.tb_camino_datos.CD.data_o[31:0]
+[pattern_trace] 1
+[pattern_trace] 0

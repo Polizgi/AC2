@@ -54,12 +54,12 @@ always_comb begin
   proximo_idA_d = idA_q;
   proximo_idB_d = idB_q;
   proximo_id_d  = id_q;
-  if (!rstn_i) begin
+  if (!rstn_i | next_fin) begin
     proximo_cnt_d = 'b0;
     proximo_idA_d = 'b0;
     proximo_idB_d = 'b0;
     proximo_id_d = 'b0;
-  end else if (estado_q == 1'b1) begin
+  end else if ((estado_q == 1'b1) | (inicio_i)) begin
     if (cnt_q < NUMSUMA) begin
       proximo_cnt_d = cnt_q + 1;
       proximo_idA_d = cnt_q + 1;
